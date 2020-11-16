@@ -12,8 +12,8 @@ class Triangle: Figure {
     var height: Double = 0.0
     var length: Double = 0.0
     init(height: Double, length: Double){
-        self.height = (height)
-        self.length = (length)
+        self.height = height
+        self.length = length
     }
     override var cornerCounter: Int {
         return 3
@@ -29,15 +29,7 @@ class Triangle: Figure {
 class Rectangle: Figure, EqualSidesInPair {
     var width: Double = 0.0
     var length: Double = 0.0
-    var perimeter: Double {
-        return 2*width + 2*length
-    }
     var isEqualSides: Bool = true
-//    var perimeter: Double {
-//        get{
-//            return 2*width + 2*length
-//        }
-//    }
     init(width: Double, length: Double){
         self.width = width
         self.length = length
@@ -73,7 +65,15 @@ protocol EqualSidesInPair{
     var width: Double {get set}
     var length: Double {get set}
     var perimeter: Double {get}
-    var isEqualSides: Bool { get }
+    var isEqualSides: Bool {get}
+}
+
+extension EqualSidesInPair{
+    var perimeter: Double {
+        get {
+            return 2*width + 2*length
+        }
+    }
 }
 
 
@@ -100,7 +100,7 @@ print("Circle name \(cr.name)")
 print(cr.calculateArea())
 
 
-var rect = Rectangle(width: 4, length: 4)
+var rect = Rectangle(width: 4, length: 3)
 //rect.width = 4
 //rect.length = 4
 print("Rectangle name \(rect.name)")
